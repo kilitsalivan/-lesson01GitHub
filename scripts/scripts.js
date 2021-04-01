@@ -6,3 +6,4 @@ let mission = 23;
 let period = 'zxcxc'; 
 alert('Шома ва');
 alert('Шома ва2');
+console.log('снег');
