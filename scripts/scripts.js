@@ -1,17 +1,13 @@
-let money = 50000;
-let income = 'Фриланс';
-let addExpenses = 'Комуналка, покупки, такси, интернет';
-let deposit = true;
-let mission = 100000;
-let period = 6;
-
-console.log(typeof money);
-console.log(typeof income);
-console.log(typeof deposit);
-console.log(addExpenses.length);
-console.log(`Период равен ${period} месяцев и цель заработать ${mission} рублей`);
-addExpenses = addExpenses.toLocaleLowerCase();
-addExpenses= addExpenses.split(',');
-console.log(addExpenses);
-let budgetDay =  money/30;
-console.log(budgetDay);
+let num = 266219;
+num = String(num);
+console.log(typeof num);
+num = num.split('');
+let ml = 1;
+for (let i = 0; i < num.length; i++){
+ml = Number(num[i])*ml;
+console.log(ml);
+}
+ml = String(ml);
+console.log(typeof ml);
+ml = ml.substr(0,2);
+console.log(ml);
