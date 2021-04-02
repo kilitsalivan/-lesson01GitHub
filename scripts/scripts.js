@@ -9,7 +9,7 @@ console.log(typeof money);
 console.log(typeof income);
 console.log(typeof deposit);
 console.log(addExpenses.length);
-console.log(`Период равен ${period} месяцев и цель заработать ${mission} рублей`);
+console.log(`Период равен ${period} месяцев и цель заработать ${mission} рублей`);// может есть другой вариант через конкатенацию строк? 
 addExpenses = addExpenses.toLocaleLowerCase();
 addExpenses= addExpenses.split(',');
 console.log(addExpenses);
