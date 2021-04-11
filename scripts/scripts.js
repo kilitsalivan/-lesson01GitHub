@@ -88,27 +88,16 @@
         do{
             appData.addExpenses = prompt ('Перечислите возможные расходы за рассчитываемый период ?');    
         }    while ( isNumber(appData.addExpenses));
-             
-        appData.addExpenses = appData.addExpenses.split(" "); 
-        
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-          }     
-        for ( let i = 0; i < appData.addExpenses.length; i++) { 
-             //     let str =  appData.addExpenses[i];     
-               //   appData.addExpenses = str[0].toUpperCase() + str.s(1).toLowerCase(); }*/
-               appData.addExpenses = capitalizeFirstLetter(appData.addExpenses[i]);
-                       
-            }
-    
-    console.log(appData.addExpenses);
+                 
+        let str = appData.addExpenses.split(' ');
+            for (let i = 0; i < str.length; i++) {
+               str[i] = str[i].slice(0, 1).toUpperCase() + str[i].slice(1);
+        }
+        appData.addExpenses = str.join(', ');
             
-    appData.deposit = confirm ('Есть ли у вас депозит в банке ?'); 
     
-     
-     
+        appData.deposit = confirm ('Есть ли у вас депозит в банке ?'); 
     },
-    
     getInfoDeposit: function(){
     if (appData.deposit){
         do { 
@@ -118,8 +107,7 @@
         do { 
             appData.moneyDeposit = prompt('Какая сумма заложена ?', 10000);
             } while ( !isNumber(appData.moneyDeposit)); 
-    
-}
+    }
     },
     calcSavemoney: function(){
         return appData.budgetMonth * appData.period;
@@ -136,6 +124,6 @@ console.log(appData.getStatusIncome(appData.budgetDay));
 for (let key in appData){
     console.log( 'Наша программа включает в себя данные:  ' + key + '  значения:  ' +appData[key] );
 }
-
 console.log('appData.addExpenses: ', appData.addExpenses);
+console.log(appData.addExpenses); 
 
