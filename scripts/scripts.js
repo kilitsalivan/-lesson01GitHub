@@ -14,7 +14,7 @@
         addIncome: {},
         expenses: {},
         addExpenses: [],
-        deposite: false,
+        deposit: false,
         mission: 500000,
         period: 6,
         budget: money,
@@ -57,10 +57,10 @@
         let valueQuestion;
         let keyQuestion = prompt('Какие обязательные расходы вы планируете в месяце?');
     do{
-      valueQuestion = +prompt('Во сколько это обойдется?');
-      } while ( !isNumber(valueQuestion));
-       appData.expenses[keyQuestion] = valueQuestion; 
-       }
+    valueQuestion = +prompt('Во сколько это обойдется?');
+    } while ( !isNumber(valueQuestion));
+    appData.expenses[keyQuestion] = valueQuestion; 
+    }
     
     //appData.addExpenses = prompt ('Перечислите возможные расходы за рассчитываемый период через запятую?');    
     //appData.addExpenses = appData.addExpenses.toLocaleLowerCase().split(',');
@@ -76,7 +76,7 @@ console.log('Cумма всех обязательных расходов за �
 console.log(appData.getTargetMonth(appData.mission,appData.budgetMonth));
 console.log(appData.getStatusIncome(appData.budgetDay));
 for (let key in appData){
-    console.log( 'Наша программа включает в себя данные:' + key + 'значения:' +appData[key] );
+    console.log( 'Наша программа включает в себя данные:  ' + key + '  значения:  ' +appData[key] );
 }
 };
 
