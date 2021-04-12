@@ -1,27 +1,26 @@
 'use strict';
-let monthlyIncome = document.querySelector ('.salary-amount');    
-let summa = document.querySelector('.income-amount');
-let description = document.querySelectorAll('.income-title')[1];    
-let plus1 = document.getElementsByTagName('button')[0];
 
-    
-    let possibleIncome1 = document.querySelectorAll('.additional_income-item')[0];
-    let possibleIncome2 = document.querySelectorAll('.additional_income-item')[1];
-    let mandatoryExpensesName = document.querySelectorAll('.expenses-title')[1];
-    let mandatoryExpensesSumma = document.querySelector('.expenses-amount');
-    let plus2 = document.getElementsByTagName('button')[1];
-    let costsNames = document.querySelector('.additional_expenses-item');
-    let deposit = document.querySelector('#deposit-check');
-    let purpose = document.querySelector('.target-amount');
-    let calculationPeriod = document.querySelector('.period-select');
-    let dailyBudget = document.getElementsByClassName('result-total')[0];
-    let monthlyExpense = document.getElementsByClassName('result-total')[1];
-    let possibleExpenses1 = document.getElementsByClassName('result-total')[2];
-    let possibleExpenses2 = document.getElementsByClassName('result-total')[3];  
-    let savePeriod = document.getElementsByClassName('result-total')[4];
-    let completionMonths = document.getElementsByClassName('result-total')[5];
-    let calculate = document.getElementById('start');
-       
+const 
+monthlyIncome = document.querySelector ('.salary-amount'),    
+summa = document.querySelector('.income-amount'),
+description = document.querySelectorAll('.income-title')[1],    
+plus1 = document.getElementsByTagName('button')[0],
+possibleIncome1 = document.querySelectorAll('.additional_income-item')[0],
+possibleIncome2 = document.querySelectorAll('.additional_income-item')[1],
+mandatoryExpensesName = document.querySelectorAll('.expenses-title')[1],
+mandatoryExpensesSumma = document.querySelector('.expenses-amount'),
+plus2 = document.getElementsByTagName('button')[1],
+costsNames = document.querySelector('.additional_expenses-item'),
+deposit = document.querySelector('#deposit-check'),
+purpose = document.querySelector('.target-amount'),
+calculationPeriod = document.querySelector('.period-select'),
+dailyBudget = document.getElementsByClassName('result-total')[0],
+monthlyExpense = document.getElementsByClassName('result-total')[1],
+possibleExpenses1 = document.getElementsByClassName('result-total')[2],
+possibleExpenses2 = document.getElementsByClassName('result-total')[3],  
+savePeriod = document.getElementsByClassName('result-total')[4],
+completionMonths = document.getElementsByClassName('result-total')[5],
+calculate = document.getElementById('start');
         console.log(monthlyIncome);
         console.log(description);
         console.log(summa);
