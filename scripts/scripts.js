@@ -89,9 +89,10 @@
             appData.addExpenses = prompt ('Перечислите возможные расходы за рассчитываемый период ?');    
         }    while ( isNumber(appData.addExpenses));
                  
-        let str = appData.addExpenses.split(' ');
+        let str = appData.addExpenses.split(',');
             for (let i = 0; i < str.length; i++) {
-               str[i] = str[i].slice(0, 1).toUpperCase() + str[i].slice(1);
+                str[i]= str[i].trim();
+                str[i] = str[i].slice(0,1).toUpperCase() + str[i].slice(1);;
         }
         appData.addExpenses = str.join(', ');
             
