@@ -13,7 +13,7 @@ expensesMonthValue = document.getElementsByClassName('expenses_month-value')[0],
 accumulatedMonthValue = document.getElementsByClassName('accumulated_month-value')[0],
 additionalIncomeValue = document.getElementsByClassName('additional_income-value')[0],
 additionalExpensesValue =  document.getElementsByClassName('additional_expenses-value')[0],
-incomePeriodValue =  document.getElementsByClassName('income_period-value')[0],
+incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
 targetMonthValue = document.getElementsByClassName('target_month-value')[0],
 salaryAmount = document.querySelector ('.salary-amount'),    
 incomeTitle = document.querySelector('.income-title'),
@@ -68,6 +68,9 @@ targetAmount = document.querySelector('.target-amount');
             targetMonthValue.value = Math.ceil(appData.getTargetMonth());
             incomePeriodValue.value = appData.calcPeriod(); 
             budgetDayValue.value = Math.ceil(appData.getBudget());
+            periodSelect.addEventListener('input', function() {
+              incomePeriodValue.value = appData.calcPeriod();
+          });
         },
         addIncomeBlock:function(){
             let cloneincomeItems = incomeItems[0].cloneNode(true);
