@@ -23,6 +23,7 @@ additionalExpenses = document.querySelector('.additional_expenses'),
 periodSelect = document.querySelector('.period-select'),
 additionalExpensesItem = document.querySelector('.additional_expenses-item'),
 incomeItems = document.querySelectorAll('.income-items'),
+periodAmount = document.querySelector('.period-amount'),
 targetAmount = document.querySelector('.target-amount');
 
     console.log(periodSelect);
@@ -159,7 +160,7 @@ targetAmount = document.querySelector('.target-amount');
     }
   },
     getperiodSelect:function(){
-       document.querySelector('.period-amount').innerHTML= periodSelect.value;
+      periodAmount.innerHTML= periodSelect.value;
     },
     getInfoDeposit: function(){
     if (appData.deposit){
@@ -172,10 +173,12 @@ targetAmount = document.querySelector('.target-amount');
             } while ( !isNumber(appData.moneyDeposit)); 
     }
     },
+    
     calcPeriod: function(){
         return appData.budgetMonth * periodSelect.value;
     }  
 };
+
 appData.getsalaryAmount();
 salaryAmount.addEventListener('input',appData.getsalaryAmount);
 start.addEventListener('click',appData.start);
