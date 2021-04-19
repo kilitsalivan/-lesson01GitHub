@@ -51,16 +51,16 @@ targetAmount = document.querySelector('.target-amount');
         budgetMonth: 0,
         expensesMonth: 0,
         start:function (){
-         
-          this.getExpenses();
+            this.getExpenses();
             this.getIncome();
             this.getExpensesMonth();
             this.getAddExpenses();
             this.getAddIncome();
             this.getBudget();
             this.showResult();
-            start.style.display = 'none';  
-            reset.style.display = 'block';
+            this.disInputs();
+        start.style.display = 'none';  
+        reset.style.display = 'block';
            },
            reset: function () {
                for (let i = incomeItems.length; i > 1; i--) {
@@ -75,16 +75,13 @@ targetAmount = document.querySelector('.target-amount');
                 item.value = '';
                
               });
-              reset.style.display = 'none';
-              start.style.display = 'block';  
               this.disInputs(true);
               this.getsalaryAmount();
-              
-           
-            },
-            
-            disInputs: function (disabled) {
-                   inputTypeText.forEach(function(item) {
+              reset.style.display = 'none';
+             start.style.display = 'block';  
+              },
+              disInputs: function (disabled) {
+              inputTypeText.forEach(function(item) {
                 if (!disabled) { 
                 item.disabled = true;
                 } else {item.disabled = false;
