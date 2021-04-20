@@ -63,7 +63,8 @@ reset.style.display = 'block';
 
 
 AppData.prototype.reset = function () {
-             
+  incomePlus.style.display = 'block';
+  expensesPlus.style.display = 'block';         
   for (let i = incomeItems.length; i > 1; i--) {
         incomeItems[i - 1].remove();
     }
@@ -79,7 +80,19 @@ AppData.prototype.reset = function () {
     this.disInputs(true);
     this.getsalaryAmount();
       reset.style.display = 'none';
-      start.style.display = 'block';  
+      start.style.display = 'block'; 
+          this.income = {};
+          this.incomeMonth = 0;
+          this.addIncome = [];
+          this.expenses = {};
+          this.addExpenses =  [];
+          this.percentDeposit = 0;
+          this.moneyDeposit = 0;
+          this.deposit = false;
+          this.budget = 0;
+          this.budgetDay = 0;
+          this. budgetMonth = 0;
+          this.expensesMonth = 0;  
     };
     
     AppData.prototype.disInputs = function (disabled) {
