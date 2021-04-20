@@ -62,13 +62,19 @@ targetAmount = document.querySelector('.target-amount');
         start.style.display = 'none';  
         reset.style.display = 'block';
            },
-           reset: function () {
-               for (let i = incomeItems.length; i > 1; i--) {
+           
+        reset: function () {
+          incomePlus.style.display = 'block';
+          expensesPlus.style.display = 'block';
+            for (let i = incomeItems.length; i > 1; i--) {
                   incomeItems[i - 1].remove();
+                  
               }
-                  for (let i = expensesItems.length; i > 1; i--) {
+            for (let i = expensesItems.length; i > 1; i--) {
                   expensesItems[i - 1].remove();
+                  
               }
+              
               periodSelect.value = 1;
               periodAmount.innerHTML = periodSelect.value;
               inputTypeText.forEach(function(item) {
@@ -78,8 +84,21 @@ targetAmount = document.querySelector('.target-amount');
               this.disInputs(true);
               this.getsalaryAmount();
               reset.style.display = 'none';
-             start.style.display = 'block';  
-              },
+              start.style.display = 'block';  
+              this.income = {};
+              this.incomeMonth = 0;
+              this.addIncome = [];
+              this.expenses = {};
+              this.addExpenses =  [];
+              this.percentDeposit = 0;
+              this.moneyDeposit = 0;
+              this.deposit = false;
+              this.budget = 0;
+              this.budgetDay = 0;
+              this. budgetMonth = 0;
+              this.expensesMonth = 0; 
+            
+            },
               disInputs: function (disabled) {
               inputTypeText.forEach(function(item) {
                 if (!disabled) { 
@@ -216,7 +235,7 @@ targetAmount = document.querySelector('.target-amount');
 appData.getsalaryAmount();
 salaryAmount.addEventListener('input',appData.getsalaryAmount);
 start.addEventListener('click',appData.start.bind(appData) );
-reset.addEventListener('click',appData.reset.bind(appData));
+reset.addEventListener('click',appData.reset.bind(appData) );
 expensesPlus.addEventListener('click',appData.addExpensesBlock);
 incomePlus.addEventListener('click',appData.addIncomeBlock);
 periodSelect.addEventListener('input',appData.getperiodSelect);
