@@ -212,11 +212,11 @@ targetAmount = document.querySelector('.target-amount');
         return this.budgetMonth * periodSelect.value;
     }  
 };
-const startNew = appData.start.bind(appData); 
+
 appData.getsalaryAmount();
 salaryAmount.addEventListener('input',appData.getsalaryAmount);
-start.addEventListener('click',startNew);
-reset.addEventListener('click',appData.reset);
+start.addEventListener('click',appData.start.bind(appData) );
+reset.addEventListener('click',appData.reset.bind(appData));
 expensesPlus.addEventListener('click',appData.addExpensesBlock);
 incomePlus.addEventListener('click',appData.addIncomeBlock);
 periodSelect.addEventListener('input',appData.getperiodSelect);
