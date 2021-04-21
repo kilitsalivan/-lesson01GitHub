@@ -51,6 +51,7 @@ targetAmount = document.querySelector('.target-amount');
         budgetMonth: 0,
         expensesMonth: 0,
         start:function (){
+            this.blockInputText();  
             this.getExpenses();
             this.getIncome();
             this.getExpensesMonth();
@@ -59,8 +60,8 @@ targetAmount = document.querySelector('.target-amount');
             this.getBudget();
             this.showResult();
             this.disInputs();
-        start.style.display = 'none';  
-        reset.style.display = 'block';
+            start.style.display = 'none';  
+            reset.style.display = 'block';
            },
            
         reset: function () {
@@ -73,21 +74,6 @@ targetAmount = document.querySelector('.target-amount');
             for (let i = expensesItems.length; i > 1; i--) {
                   expensesItems[i - 1].remove();
                 }
-        let income =  document.querySelectorAll('.income-items'); 
-            while (income.firstChild) {
-            income.removeChild(income);
-            }
-          incomeItems = income;
-            console.log('incomeItems: ', incomeItems);
-         
-
-        let expetems =  document.querySelectorAll('.expenses-items'); 
-           while (expetems.firstChild) {
-            expetems.removeChild(expetems);
-          }
-          expensesItems = expetems;
-             console.log('incomeItems: ', incomeItems);
-
               periodSelect.value = 1;
               periodAmount.innerHTML = periodSelect.value;
               inputTypeText.forEach(function(item) {
@@ -134,6 +120,14 @@ targetAmount = document.querySelector('.target-amount');
              
                      });
         },
+        blockInputText : function () {
+          let inpitText = document.querySelectorAll('[type="text"]:not(.result-total)');
+          inpitText.forEach(element => {
+              element.disabled = true;
+          });
+          
+      },
+        
         addIncomeBlock:function(){
             let cloneincomeItems = incomeItems[0].cloneNode(true);
             incomeItems[0].parentNode.insertBefore(cloneincomeItems,incomePlus);
