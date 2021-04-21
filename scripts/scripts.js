@@ -49,6 +49,7 @@ const appData = new AppData();
 
 
 AppData.prototype.start = function (){
+  this.blockInputText();  
   this.getExpenses();
   this.getIncome();
   this.getExpensesMonth();
@@ -57,8 +58,6 @@ AppData.prototype.start = function (){
   this.getBudget();
   this.showResult();
   this.disInputs();
-start.style.display = 'none';  
-reset.style.display = 'block';
  }; 
 
 
@@ -94,7 +93,14 @@ AppData.prototype.reset = function () {
           this. budgetMonth = 0;
           this.expensesMonth = 0;  
     };
-    
+    AppData.prototype.blockInputText = function () {
+      let inpitText = document.querySelectorAll('[type="text"]:not(.result-total)');
+      inpitText.forEach(element => {
+          element.disabled = true;
+      });
+      start.style.display = 'none';  
+       reset.style.display = 'block';
+  };
     AppData.prototype.disInputs = function (disabled) {
     inputTypeText.forEach(function(item) {
       if (!disabled) { 
