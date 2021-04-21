@@ -60,8 +60,7 @@ targetAmount = document.querySelector('.target-amount');
             this.getBudget();
             this.showResult();
             this.disInputs();
-            start.style.display = 'none';  
-            reset.style.display = 'block';
+            
            },
            
         reset: function () {
@@ -125,7 +124,8 @@ targetAmount = document.querySelector('.target-amount');
           inpitText.forEach(element => {
               element.disabled = true;
           });
-          
+          start.style.display = 'none';  
+            reset.style.display = 'block';
       },
         
         addIncomeBlock:function(){
