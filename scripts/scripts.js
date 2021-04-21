@@ -64,17 +64,30 @@ targetAmount = document.querySelector('.target-amount');
            },
            
         reset: function () {
-          incomePlus.style.display = 'block';
-          expensesPlus.style.display = 'block';
+           incomePlus.style.display = 'block';
+           expensesPlus.style.display = 'block';
             for (let i = incomeItems.length; i > 1; i--) {
                   incomeItems[i - 1].remove();
                   
               }
             for (let i = expensesItems.length; i > 1; i--) {
                   expensesItems[i - 1].remove();
-                  
-              }
-              
+                }
+        let income =  document.querySelectorAll('.income-items'); 
+            while (income.firstChild) {
+            income.removeChild(income);
+            }
+          incomeItems = income;
+            console.log('incomeItems: ', incomeItems);
+         
+
+        let expetems =  document.querySelectorAll('.expenses-items'); 
+           while (expetems.firstChild) {
+            expetems.removeChild(expetems);
+          }
+          expensesItems = expetems;
+             console.log('incomeItems: ', incomeItems);
+
               periodSelect.value = 1;
               periodAmount.innerHTML = periodSelect.value;
               inputTypeText.forEach(function(item) {
@@ -138,9 +151,9 @@ targetAmount = document.querySelector('.target-amount');
           }
         },
         getIncome: function (){
-          incomeItems.forEach(function(item){
-                let    itemIncomeItems = item.querySelector('.income-title').value;
-                let    cashIncome = item.querySelector('.income-amount').value; 
+               incomeItems.forEach(function(item){
+            let    itemIncomeItems = item.querySelector('.income-title').value;
+            let    cashIncome = item.querySelector('.income-amount').value; 
                   if (itemIncomeItems !== '' &&  cashIncome !==0 ) {
                       appData.income[itemIncomeItems] =  +cashIncome;
                    }    
