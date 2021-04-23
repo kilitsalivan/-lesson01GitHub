@@ -94,7 +94,7 @@ blockInputText () {
           element.disabled = true;
       });
       start.style.display = 'none';  
-       reset.style.display = 'block';
+      reset.style.display = 'block';
   }
   
   disPlus (disabled) {
@@ -146,6 +146,7 @@ addExpensesBlock (){
 }
 
 getExpInk () {
+
   const count = item => {
     const startStr = item.className.split('-')[0];
     const itemTitle = item.querySelector(`.${startStr}-title`).value;
@@ -154,7 +155,10 @@ getExpInk () {
   this[startStr][itemTitle] =  +itemAmount;
  }   
 };
- incomeItems.forEach(count);
+for (let key in AppData) {
+  console.log('AppData[key]: ', AppData[key]);
+}
+incomeItems.forEach(count);
  expensesItems.forEach(count);
  for (let key in this.income){
   this.incomeMonth +=this.income[key];
