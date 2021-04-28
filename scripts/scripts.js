@@ -37,23 +37,25 @@ countTimer('29 April 2021');
 const toggleMenu = () =>{
     const body = document.querySelector('body'),
           menu = document.querySelector('menu'),
-          menuItems = document.querySelector('ul>li');
+          menuItems = menu.querySelectorAll('ul>li');
           
           const handlerMenu = () => {
               menu.classList.toggle('active-menu');
     };
            
-        body.addEventListener('click', (event) =>{
+    body.addEventListener('click', (event) =>{
             let target = event.target;
-
-          if (target.closest('.menu')){
+       if (target.closest('.menu')|| target.closest('.close-btn')){
               handlerMenu();
-            } else 
-          if (target.closest('.close-btn'))  {
-              handlerMenu();
-            } else {
-              menuItems.forEach((elem) =>elem.addEventListener('click', handlerMenu ));
-            }  
+           } else 
+           if (target.closest('ul>li'))
+            {
+              menu.classList.remove('active-menu');
+            } else { target = target.closest('.active-menu');
+          }
+          if (!target){
+            menu.classList.remove('active-menu');
+          }    
     });
     };      
          
