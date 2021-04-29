@@ -36,9 +36,8 @@ countTimer('29 April 2021');
 // меню
 const toggleMenu = () =>{
     const body = document.querySelector('body'),
-          menu = document.querySelector('menu'),
-          menuItems = menu.querySelectorAll('ul>li');
-          
+          menu = document.querySelector('menu');
+            
           const handlerMenu = () => {
               menu.classList.toggle('active-menu');
     };
@@ -65,41 +64,43 @@ const togglePopUp = () => {
     const popup = document.querySelector('.popup'),
           popupContent = document.querySelector('.popup-content'),
           popupBtn = document.querySelectorAll('.popup-btn');
-    
+          
       const getpoup =() => {
-          let start = Date.now();
-          let timer = setInterval(function() {
-          let timePassed = Date.now() - start;
-                  popupContent.style.left = timePassed / 5+ 'px';
-                  if (timePassed > 1500) {clearInterval(timer);}
-                  }, 10);
-        };
-    
-    
-     popupBtn.forEach ((elem) => { 
-      elem.addEventListener('click', () => {
-        let width = document.documentElement.clientWidth;
-        popup.style.display = 'block';
-        popupContent.style.left = 0;
-         if (width > 768 ) { getpoup(); 
-              } else {
-           popup.style.display = 'none';
-         }
-        
-        
-      });
-  });
-    popup.addEventListener('click', (event) => {
-            let target = event.target;
-          if (target.closest('.popup-close')){
-              popup.style.display = 'none';
-           } else {
-            target = target.closest('.popup-content');
-          if (!target){
-              popup.style.display = 'none';
-            }    
-          }
+        let start = Date.now();
+        let timer = setInterval(function() {
+        let timePassed = Date.now() - start;
+                popupContent.style.left = timePassed / 5+ 'px';
+                if (timePassed > 1500) {clearInterval(timer);}
+                }, 10);
+      };
+  popupBtn.forEach ((elem) => { 
+    elem.addEventListener('click', () => {
+      let width = document.documentElement.clientWidth;
+      popup.style.display = 'block';
+      popupContent.style.left = 0;
+      if (width > 768 ) { getpoup(); 
+      } else {
+          popup.style.display = 'none';
+      }
     });
+});
+window.addEventListener("resize", function() {
+  if (this.innerWidth < 768 ) { 
+      popup.style.display = 'none';
+  } 
+  }, false);
+
+popup.addEventListener('click', (event) => {
+          let target = event.target;
+        if (target.closest('.popup-close')){
+            popup.style.display = 'none';
+         } else {
+          target = target.closest('.popup-content');
+        if (!target){
+            popup.style.display = 'none';
+          }    
+        }
+  });
    };
 togglePopUp();
 //табы 
