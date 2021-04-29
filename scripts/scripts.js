@@ -80,13 +80,13 @@ const togglePopUp = () => {
       popupContent.style.left = 0;
       if (width > 768 ) { getpoup(); 
       } else {
-          popup.style.display = 'none';
+          popup.style.display = 'block';
       }
     });
 });
 window.addEventListener("resize", function() {
   if (this.innerWidth < 768 ) { 
-      popup.style.display = 'none';
+      popup.style.display = 'block';
   } 
   }, false);
 
