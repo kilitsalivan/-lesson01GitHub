@@ -77,11 +77,13 @@ const togglePopUp = () => {
     elem.addEventListener('click', () => {
       let width = document.documentElement.clientWidth;
       popup.style.display = 'block';
-      popupContent.style.left = 0;
+          
       if (width > 768 ) { getpoup(); 
       } else {
           popup.style.display = 'block';
-      }
+          popupContent.style.left = 60 + 'px';
+        console.log(popupContent.getBoundingClientRect());
+            }
     });
 });
 window.addEventListener("resize", function() {
