@@ -86,7 +86,7 @@ const togglePopUp = () => {
 });
 window.addEventListener("resize", function() {
   if (this.innerWidth < 768 ) { 
-      popup.style.display = 'block';
+      popup.style.display = 'none';
   } 
   }, false);
 
