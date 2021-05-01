@@ -65,41 +65,55 @@ const togglePopUp = () => {
           popupContent = document.querySelector('.popup-content'),
           popupBtn = document.querySelectorAll('.popup-btn');
           
-      const getpoup =() => {
-        let start = Date.now();
-        let timer = setInterval(function() {
-        let timePassed = Date.now() - start;
-                popupContent.style.left = timePassed / 5+ 'px';
-                if (timePassed > 1500) {clearInterval(timer);}
-                }, 10);
+  const animate =  ({timing, draw, duration}) => {
+        let start = performance.now();
+            requestAnimationFrame(function animate(time) {
+        let timeFraction = (time - start) / duration;
+          if (timeFraction > 1) {timeFraction = 1;}
+        let progress = timing(timeFraction);
+            draw(progress); // отрисовать её
+          if (timeFraction < 1) {
+            requestAnimationFrame(animate);
+          }
+        });
       };
+
+const getpoup = () =>{
+  animate({ duration: 1000, timing(timeFraction) {
+    return timeFraction;  },
+    draw(progress) {
+      popupContent.style.left = progress * 30 + '%';
+    console.log(popup.style.transform);
+    }
+  });
+};
+
+
   popupBtn.forEach ((elem) => { 
     elem.addEventListener('click', () => {
       let width = document.documentElement.clientWidth;
       popup.style.display = 'block';
-          
-      if (width > 768 ) { getpoup(); 
-      } else {
+        if (width > 768 ) { getpoup(); 
+      } 
+      elem.addEventListener('click', () => {
           popup.style.display = 'block';
-          popupContent.style.left = 60 + 'px';
-        console.log(popupContent.getBoundingClientRect());
-            }
-    });
+      if (document.documentElement.clientWidth > 768 ){ getpoup();}
+      else {popupContent.style.left = '' ;}
+       });
+      });
 });
-window.addEventListener("resize", function() {
-  if (this.innerWidth < 768 ) { 
-      popup.style.display = 'none';
-  } 
-  }, false);
+
 
 popup.addEventListener('click', (event) => {
           let target = event.target;
         if (target.closest('.popup-close')){
             popup.style.display = 'none';
+            popupContent.style.left = '' ;
          } else {
           target = target.closest('.popup-content');
         if (!target){
             popup.style.display = 'none';
+            popupContent.style.left = '' ;
           }    
         }
   });
