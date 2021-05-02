@@ -98,7 +98,8 @@ const getpoup = () =>{
 window.addEventListener(`resize`, () => {
   let width = document.documentElement.clientWidth;  
    if (width < 768 ) { 
-     popupContent.style.left = ''; }
+    popup.style.display = 'none'; 
+    popupContent.style.left = ''; }
   }, false);
 
 
