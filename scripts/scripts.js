@@ -79,7 +79,7 @@ const togglePopUp = () => {
       };
 
 const getpoup = () =>{
-  animate({ duration: 1000, timing(timeFraction) {
+  animate({ duration: 3000, timing(timeFraction) {
     return timeFraction;  },
     draw(progress) {
       popupContent.style.left = progress * 30 + '%';
@@ -88,20 +88,18 @@ const getpoup = () =>{
   });
 };
 
-
-  popupBtn.forEach ((elem) => { 
-    elem.addEventListener('click', () => {
+    popupBtn.forEach ((elem) => { 
+      elem.addEventListener('click', () => {
       let width = document.documentElement.clientWidth;
       popup.style.display = 'block';
-        if (width > 768 ) { getpoup(); 
-      } 
-      elem.addEventListener('click', () => {
-          popup.style.display = 'block';
-      if (document.documentElement.clientWidth > 768 ){ getpoup();}
-      else {popupContent.style.left = '' ;}
-       });
-      });
+        if (width > 768 ) { getpoup();}  });
 });
+
+window.addEventListener(`resize`, () => {
+  let width = document.documentElement.clientWidth;  
+   if (width < 768 ) { 
+     popupContent.style.left = ''; }
+  }, false);
 
 
 popup.addEventListener('click', (event) => {
@@ -117,7 +115,9 @@ popup.addEventListener('click', (event) => {
           }    
         }
   });
-   };
+  
+
+};
 togglePopUp();
 //табы 
 const tabs = () => {
