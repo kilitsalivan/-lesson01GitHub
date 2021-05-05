@@ -29,7 +29,7 @@ const updateClock = function  () {
 				timerMinutes.textContent = `00`;
 				timerSeconds.textContent = `00`;
       } 
-    }
+    };
         interVal = setInterval(updateClock, 1000);
 }
 countTimer('29 April 2021'); 
@@ -280,42 +280,37 @@ getCalck();
 
 //Mainform
 const getmainForm = () =>{
-    const mainForm = document.getElementById('form1');
-        const mainFormInput = (event) => {
-          let target = event.target;
+    const	userName = document.querySelectorAll('[name=user_name]'),
+        	userMessage = document.querySelectorAll('[name=user_message]'),
+        	userEmail = document.querySelectorAll('[name=user_email]'),
+          userPhone = document.querySelectorAll('[name=user_phone]');    
+    
+  const mainFormInput = (elem) => {
+          elem.addEventListener('input',(event)=>{
+      let target = event.target;
           console.log(target);
-        if (target.type === 'text') {
+      if (target.type === 'text') {
             target.value = target.value.replace(/[^а-яА-ЯЁё\-\ ]/, '');
-         }else if (target.type === 'email') {
+      }else if (target.type === 'email') {
           target.value = target.value.replace(/[^a-zA-Z\@\_\-\.\!\~\*\']/, '');
-         }else if (target.type === 'tel') {
+      }else if (target.type === 'tel') {
           target.value = target.value.replace(/[^\d\(\)\-]/g, '');
-         }
-    } ;
-    mainForm.addEventListener('input', mainFormInput ) ;   
-};
-getmainForm ();
-
-const getFooterForm = () => {
-  const footerForm = document.querySelector('.footer-form-input');
-        footerForm.addEventListener('input', (event) => {
-    let target = event.target;
-    if (target.type === 'text') {
-      target.value = target.value.replace(/[^а-яА-ЯЁё\-\ ]/, '');
-    } else if (target.type === 'email') {
-      target.value = target.value.replace(/[^a-zA-Z\@\_\-\.\!\~\*\']/, '');
-    } else if (target.type === 'tel') {
-      target.value = target.value.replace(/[^\d\(\)\-]/g, '');
-    }
-  });
-};
-getFooterForm();
-
+      }
+      });
+      } ;
+    userName.forEach((elem) =>{
+        mainFormInput(elem);
+      }); 
+    userMessage.forEach ((elem)=>{
+        mainFormInput(elem);
+      }); 
+    userEmail.forEach ((elem) =>{
+        mainFormInput(elem);
+    }); 
+    userPhone.forEach ((elem) =>{
+        mainFormInput(elem);
+    }); 
 //фокус
-const	userName = document.querySelectorAll('[name=user_name]');
-const	userMessage = document.querySelectorAll('[name=user_message]');
-const	userEmail = document.querySelectorAll('[name=user_email]');
-
 const getInputs = (input, exp) => {
   if (!!input.value.match(exp)) {
           input.value = input.value.replace(exp, '');
@@ -363,4 +358,6 @@ userEmail.forEach( (elem) => {
       getClear(elem);
     });
 });
+};
+getmainForm ();
 });
