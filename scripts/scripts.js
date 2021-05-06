@@ -312,12 +312,14 @@ const getmainForm = () =>{
           elem.addEventListener('input',(event)=>{
       let target = event.target;
           console.log(target);
-      if (target.type === 'text') {
-            target.value = target.value.replace(/[^а-яА-ЯЁё\-\ ]/, '');
-      }else if (target.type === 'email') {
+      if (target.type === 'email') {
           target.value = target.value.replace(/[^a-zA-Z\@\_\-\.\!\~\*\']/, '');
       }else if (target.type === 'tel') {
-          target.value = target.value.replace(/[^\d\(\)\-]/g, '');
+          target.value = target.value.replace(/[^0-9+]/ig, '');
+      }else if (target.type === 'text' && target.name === 'user_message') {
+        target.value = target.value.replace(/[^а-яА-ЯЁё\.\,\;\:\!\?\-\(\)\ ]/, '');
+      }else{
+        target.value = target.value.replace(/[^а-яА-ЯЁё\ ]/, '');
       }
       });
       } ;
@@ -395,4 +397,59 @@ calck.addEventListener('input',calckBanned );
 getCalck();
 };
 getmainForm ();
+//send-ajax-form
+const sendForm = (id)=>{
+    const errorMessage = 'Что то пошло не так...',
+          loadMessage = 'Загрузка...',
+          succesMessage = 'Cпасибо! Мы скоро с вами свяжемся!';
+          const form = document.getElementById(id);
+    const statusMessage = document.createElement ('div');
+          statusMessage.style.cssText = 'font-size: 2rem; color: white;';
+      
+          form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        form.appendChild(statusMessage);
+        statusMessage.textContent = loadMessage;
+    const clearInput = (elem) => {
+          const form = document.getElementById(elem);
+          [...form.elements].filter(item =>
+              item.tagName.toLowerCase() !== 'button' && item.type !== 'button').forEach(item => item.value = '');
+                };
+               
+  
+  const formData = new FormData(form);
+      let body = {};
+      formData.forEach((val, key) =>{
+        body[key] = val;
+        });
+      postData(body, () => {
+          statusMessage.textContent = succesMessage;
+          clearInput(id);  
+        }, 
+        (error) =>{
+          statusMessage.textContent = errorMessage;  
+          console.error(error);
+        });
+});
+const postData = (body, outputData,errorData) =>{
+  const request = new XMLHttpRequest();
+  request.addEventListener('readystatechange', ()=> {
+    if (request.readyState !== 4){
+        return;
+    }
+    if (request.status === 200){
+      outputData();  
+    } else {
+      errorData(request.status); 
+    }
+});            
+  request.open('POST','./server.php');
+        request.setRequestHeader('Content-Type', 'application/json');
+        request.send(JSON.stringify(body));
+  };
+ 
+};
+sendForm('form1',getmainForm);
+sendForm('form2',getmainForm);
+sendForm('form3',getmainForm);
 });
