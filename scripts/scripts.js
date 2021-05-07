@@ -411,44 +411,44 @@ form.addEventListener('submit', (event) => {
 form.appendChild(statusMessage);
       statusMessage.textContent = loadMessage;
 
-const clearInput = (elem) => {
-    const form = document.getElementById(elem);
-  [...form.elements].filter(item =>
-      item.tagName.toLowerCase() !== 'button' && item.type !== 'button').forEach(item => item.value = '');
-        };
-
 const formData = new FormData(form);
   let body = {};
   formData.forEach((val, key) =>{
   body[key] = val;
 });
-});
-  
+const clearInput = (elem) => {
+    const form = document.getElementById(elem);
+  [...form.elements].filter(item =>
+      item.tagName.toLowerCase() !== 'button' && item.type !== 'button').forEach(item => item.value = '');
+        };
 const postData = (body) =>{
-  return new Promise((resolve, reject) => {
-      const request = new XMLHttpRequest();
-      request.addEventListener('readystatechange', ()=> {
-    
+          return new Promise((resolve, reject) => {
+            const request = new XMLHttpRequest();
+            request.addEventListener('readystatechange', ()=> {
         if (request.readyState !== 4){
-    return;
-    }
-    if (request.status === 200){
-      resolve(); 
-      } else {
-      reject(request.status); 
-    }
-    });            
-    request.open('POST','./server.php');
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.send(JSON.stringify(body));
-    });
-  };
-
-postData(body)
-  .then(() => {statusMessage.textContent = successMessage;})
-  .cath((error)=> {statusMessage.textContent = errorMessage;
+          return;
+          }
+          if (request.status === 200){
+            resolve(); 
+            } else {
+            reject(request.status); 
+          }
+          });            
+          request.open('POST','./server.php');
+          request.setRequestHeader('Content-Type', 'application/json');
+          request.send(JSON.stringify(body));
+          });
+        };
+  postData(body)
+  .then(() => {
+    statusMessage.textContent = succesMessage;
+    clearInput(id);})
+  .cath((error) => {
+    statusMessage.textContent = errorMessage;
     console.error(error);
   });
+      });
+
 };
 sendForm('form1',getmainForm);
 sendForm('form2',getmainForm);
