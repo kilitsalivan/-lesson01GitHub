@@ -443,7 +443,7 @@ const postData = (body) =>{
   .then(() => {
     statusMessage.textContent = succesMessage;
     clearInput(id);})
-  .cath((error) => {
+  .catch((error) => {
     statusMessage.textContent = errorMessage;
     console.log(error);
   });
