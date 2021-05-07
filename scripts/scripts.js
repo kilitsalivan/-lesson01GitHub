@@ -445,7 +445,7 @@ const postData = (body) =>{
     clearInput(id);})
   .cath((error) => {
     statusMessage.textContent = errorMessage;
-    console.error(error);
+    console.log(error);
   });
       });
 
