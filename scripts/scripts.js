@@ -162,21 +162,17 @@ let currentSlide = 0,
     //удаление и добавление dot
     for(let i = 0; i < dot1.length; i++){ 
      dot1[i].remove();
-     console.log(dot1[i]);
      }
   const newDot = () =>{  
     for(let i = 0; i < slide.length; i++){
   	  let dot = document.createElement('li');
 				dot.classList.add('dot');
 				portfolioDots.appendChild(dot);
-        console.log(dot[i]); 
-      }
+        }
 		portfolioDots.children[0].classList.add('dot-active');	
   };
   newDot();
   const dot = document.querySelectorAll('.dot');
-console.log(dot);
- 
 
   const prevSlide = (elem, index, strClass) =>{
   elem[index].classList.remove(strClass);
@@ -311,7 +307,7 @@ const getmainForm = () =>{
   const mainFormInput = (elem) => {
           elem.addEventListener('input',(event)=>{
       let target = event.target;
-          console.log(target);
+          
       if (target.type === 'email') {
           target.value = target.value.replace(/[^a-zA-Z\@\_\-\.\!\~\*\']/, '');
       }else if (target.type === 'tel') {
@@ -347,7 +343,7 @@ const getInputs = (input, exp) => {
 const getClear = (item) => {
   item.value = item.value.replace(/\s+/g, ' ');
   item.value = item.value.replace(/\-+/g, '-');
-  console.log(item.value);  
+  
   let regExpElem = new RegExp(item.value);
     if (/^[/ /-]/.test(regExpElem)) {
       item.value = item.value.replace(/^[/ /-]/, '');
@@ -445,8 +441,7 @@ const postData = (body) =>{
     clearInput(id);})
   .catch((error) => {
     statusMessage.textContent = errorMessage;
-    console.log(error);
-  });
+   });
       });
 
 };
