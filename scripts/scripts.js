@@ -162,22 +162,18 @@ let currentSlide = 0,
     //удаление и добавление dot
     for(let i = 0; i < dot1.length; i++){ 
      dot1[i].remove();
-     console.log(dot1[i]);
      }
   const newDot = () =>{  
     for(let i = 0; i < slide.length; i++){
   	  let dot = document.createElement('li');
 				dot.classList.add('dot');
 				portfolioDots.appendChild(dot);
-        console.log(dot[i]); 
-      }
+    }
 		portfolioDots.children[0].classList.add('dot-active');	
   };
   newDot();
   const dot = document.querySelectorAll('.dot');
-console.log(dot);
- 
-
+  
   const prevSlide = (elem, index, strClass) =>{
   elem[index].classList.remove(strClass);
 };
@@ -311,7 +307,7 @@ const getmainForm = () =>{
   const mainFormInput = (elem) => {
           elem.addEventListener('input',(event)=>{
       let target = event.target;
-          console.log(target);
+          
       if (target.type === 'email') {
           target.value = target.value.replace(/[^a-zA-Z\@\_\-\.\!\~\*\']/, '');
       }else if (target.type === 'tel') {
@@ -347,7 +343,7 @@ const getInputs = (input, exp) => {
 const getClear = (item) => {
   item.value = item.value.replace(/\s+/g, ' ');
   item.value = item.value.replace(/\-+/g, '-');
-  console.log(item.value);  
+    
   let regExpElem = new RegExp(item.value);
     if (/^[/ /-]/.test(regExpElem)) {
       item.value = item.value.replace(/^[/ /-]/, '');
@@ -406,47 +402,40 @@ const sendForm = (id)=>{
     const statusMessage = document.createElement ('div');
           statusMessage.style.cssText = 'font-size: 2rem; color: white;';
       
-          form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', (event) => {
         event.preventDefault();
         form.appendChild(statusMessage);
-        statusMessage.textContent = loadMessage;
+        
     const clearInput = (elem) => {
           const form = document.getElementById(elem);
           [...form.elements].filter(item =>
               item.tagName.toLowerCase() !== 'button' && item.type !== 'button').forEach(item => item.value = '');
                 };
-               
+    statusMessage.textContent = loadMessage;          
   
   const formData = new FormData(form);
-      let body = {};
-      formData.forEach((val, key) =>{
-        body[key] = val;
-        });
-      postData(body, () => {
+    
+      postData(Object.fromEntries(formData))
+      .then((response) => {
+          if (response.status !==200){
+            throw new Error ('status network not 200');
+          }
           statusMessage.textContent = succesMessage;
           clearInput(id);  
-        }, 
-        (error) =>{
+        }) 
+        .catch ((error) =>{
           statusMessage.textContent = errorMessage;  
           console.error(error);
         });
 });
-const postData = (body, outputData,errorData) =>{
-  const request = new XMLHttpRequest();
-  request.addEventListener('readystatechange', ()=> {
-    if (request.readyState !== 4){
-        return;
-    }
-    if (request.status === 200){
-      outputData();  
-    } else {
-      errorData(request.status); 
-    }
-});            
-  request.open('POST','./server.php');
-        request.setRequestHeader('Content-Type', 'application/json');
-        request.send(JSON.stringify(body));
-  };
+const postData = (body) =>{
+  return fetch ('./server.php',{
+     method: 'POST',
+     headers:{'Content-Type': 'application/json'
+    },
+    body:JSON.stringify(body)
+  }); 
+    };
  
 };
 sendForm('form1',getmainForm);
