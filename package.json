@@ -1,0 +1,25 @@
+{
+  "name": "modultest",
+  "version": "1.0.0",
+  "scripts": {
+    "watch": "webpack --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kilitsalivan/-lesson01GitHub/issues"
+  },
+  "homepage": "https://github.com/kilitsalivan/-lesson01GitHub#readme",
+  "devDependencies": {
+    "webpack": "^5.36.2",
+    "webpack-cli": "^4.7.0"
+  },
+  "main": "index.js",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kilitsalivan/-lesson01GitHub.git"
+  },
+  "keywords": [],
+  "description": ""
+}
