@@ -1,19 +1,17 @@
 const getmainForm = () =>{
     const	userName = document.querySelectorAll('[name="fio"]'),
           userPhone = document.querySelectorAll('[name="tel"]'); 
-         
-    const mainFormInput = (elem) => {
+const mainFormInput = (elem) => {
     
-	function maskPhone(selector, masked = '+7 (___) ___-__-__') {
+function maskPhone(selector, masked = '+7 (___) ___-__-__') {
 		const elems = document.querySelectorAll(selector);
 	
-		function mask(event) {
-			const keyCode = event.keyCode;
-			const template = masked,
+function mask(event) {
+		const keyCode = event.keyCode;
+		const template = masked,
 				def = template.replace(/\D/g, ""),
 				val = this.value.replace(/\D/g, "");
-			console.log(template);
-			let i = 0,
+  			let i = 0,
 				newValue = template.replace(/[_\d]/g, function (a) {
 					return i < val.length ? val.charAt(i++) || def.charAt(i) : a;
 				});
@@ -47,17 +45,17 @@ const getmainForm = () =>{
   elem.addEventListener('input',(event)=>{
     let target = event.target;
       if (target.name === 'tel' ) {
-             	maskPhone('[name=tel]');
+      	maskPhone('[name=tel]');
       }else if (target.type === 'text' && target.name === 'fio') {
         target.value = target.value.replace(/[^а-яА-ЯЁё\.\,\;\:\!\?\-\(\)\ ]/g, '');
       }
       });
       } ;
     userName.forEach((elem) =>{
-        mainFormInput(elem);
+      elem.setAttribute('required', true); mainFormInput(elem);
       }); 
     userPhone.forEach ((elem) =>{
-        mainFormInput(elem);
+      elem.setAttribute('required', true); mainFormInput(elem);
     }); 
   //фокус
   const getInputs = (input, exp) => {

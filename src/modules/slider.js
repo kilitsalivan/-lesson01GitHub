@@ -3,6 +3,8 @@ const slider = () =>{
           slider = document.querySelector('.top-slider'),
           dot1 = document.querySelectorAll('.dot'),
           portfolioDots = document.querySelector('.portfolio-dots');
+			
+          
           
     let currentSlide = 0,
     interval;
