@@ -6,7 +6,7 @@ const slider = () =>{
           
     let currentSlide = 0,
     interval;
-for(let i = 0; i < dot1.length; i++){ 
+    for(let i = 0; i < dot1.length; i++){ 
         dot1[i].remove();
         }
 const newDot = () =>{  
